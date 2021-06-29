@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decision Tree</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script src="main.js"></script>
+</head>
+<body>
+
+<center>
+    <h1>Decision Trees</h1>(for beginner)
+    <hr>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="first">Decision tree is a simple idea used in <a href="https://en.wikipedia.org/wiki/Machine_learning#Overview" target="_blank"> Machine learning</a>, 
+      <a href="https://en.wikipedia.org/wiki/Statistics" target="_blank"> Statistic</a> and <a href="https://en.wikipedia.org/wiki/Data_mining" target="_blank"> Data mining</a>. It is very easy to interpret and understand.
+         As the name suggests, it helps us in making decisions,
+    from simple to complex problems, provided data or information is given. Decision trees are supervised learning models used for both
+    classification and regression tasks (CART) in machine learning.  In this blog, we will discuss on
+     how decison trees are used in machine learning classification tasks, which are illustrated better using
+     examples. In the first example, we will try to understand how decision trees work and how they are used
+    in making machine learning models.In example #2,  Iris data is used to show the implementation of a decision tree
+    in Python. Decision trees have an upside down tree-like structure starting from
+    root to leaf. First, we will try to understand how decision trees are used in classification (categorize using a given set of data).
+    We have to train a model such that, given an input data the model should predict the classifictaion(category) of input. 
+    Lets try to understand this with a simple example. 
+      </p>
+      <br>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+       
+        <table id="tab" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Outlook</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Wind</th>
+                <th>Play?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Cloudy</td>
+                <td>Hot</td>
+                <td>High</td>
+                <td>Weak</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Cloudy</td>
+                <td>Mild</td>
+                <td>High</td>
+                <td>Strong</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Cloudy</td>
+                <td>Hot</td>
+                <td>Normal</td>
+                <td>Weak</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Sunny</td>
+                <td>Hot</td>
+                <td>High</td>
+                <td>Weak</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Sunny</td>
+                <td>Mild</td>
+                <td>Normal</td>
+                <td>Strong</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Sunny</td>
+                <td>Hot</td>
+                <td>High</td>
+                <td>Strong</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Rainy</td>
+                <td>Mild</td>
+                <td>High</td>
+                <td>Strong</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Rainy</td>
+                <td>Cool</td>
+                <td>Normal</td>
+                <td>Strong</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Rainy</td>
+                <td>Mild</td>
+                <td>High</td>
+                <td>Weak</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Rainy</td>
+                <td>Mild</td>
+                <td>High</td>
+                <td>Weak</td>
+                <td>Yes</td>
+              </tr>
+
+
+
+
+            </tbody>
+          </table>
+          <p>Table 1: 10 days data on weather</p>
+        </div>
+        <span class="col-lg-5 col-md-5 col-sm-12 col-xs-12 tree_img">
+            <br>
+            <br>
+            <br>
+            <img class="img-responsive" src="tree_img.png">
+            <br>
+            <br>
+            <p>Fig 1. Decision tree of weather data</p>
+        </span>
+        <br>
+    
+      <div>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sec">The above table gives data on 10 days of weather 
+      which helps us decide 
+      if it is a good time to play or not. It has 4 variables or features which helps us decide on the same.
+       The first feature, (variable) ‘outlook’ takes 3 distinct features, the second feature, ‘temperature’ 
+       
+       takes 3 distinct values, the third, ‘humidity’ and the fourth, ‘wind’, takes 2 distinct values. 
+      The ML task here is to take input from us on the outlook, temperature, humidity and wind speed of a new day .
+       Using this information, the model we made should predict if it is a good day to play or not. <br><br>
+       The table is represented in a simple decision tree which helps us to make a decision. The top node of the
+        tree is called the root node, which is also the most important feature or variable in the table. Other 
+        nodes of the decision tree are called internal nodes. At each node, there is a test statement or question
+         that we ask (e.g. Is the outlook cloudy?). Each branch denotes a decision rule and at the very bottom of
+          the tree there is a leaf, where we arrive at a decision; in this case whether to play or not. 
+Choosing a feature or variable to split the data at each node is decided by Information gain or Gini impurity.
+
+      
+
+        
+        <br><br><b style="font-size: large !important;">Information gain</b><br><br>
+        Information Gain is a measure of how much information is given by each feature to make a decision. 
+        The feature or variable used in the root node is the one which has the highest information gain, at each 
+        node Information gain must be calculated to decide which feature to use for splitting. 
+        To measure Information Gain, we need to know about <a href="https://en.wikipedia.org/wiki/Entropy" target="_blank"> Entropy</a>.
+        The splitting stops when the Entropy (or Gini impurity) becomes zero or when there are no more data points to
+         proceed. 
+        If the Entropy at leaf is zero, it is called a <b>Pure node</b>. The tree can be allowed to be grown till it reaches a pure node which is called as a 
+        <b>greedy tree</b> because it sometimes leads to <a href="https://en.wikipedia.org/wiki/Overfitting" target="_blank"> overfitting.</a><br>
+
+    </p>
+     </div>
+     <img class="img-responsive entro" src="entropy.PNG">
+     <br> 
+     <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sec text-muted">Consider the above example. 
+       If Entropy of the whole dataset should be calculated, then the value of k is 2, since we have only two 
+       possible outcomes (play or not play) or only two possible classifications  
+       (<a href="https://en.wikipedia.org/wiki/Binary_classification" target="_blank"> Binary classification</a>).
+       and P(Yi) are the corresponding probabilities. Below are the steps on how to calculate Information Gain using Entropy.
+     </p>
+     <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-1:</b> Calculate Entropy on the whole dataset (D), 
+       using our example above [Refer table 1]. We have 6 data points with outcome 'play'(yes) and 4 with outcome 'not to play' (No). 
+       Y is the class labels has values 'yes' and 'no'.</p>
+       <br>
+       <img class="img-responsive entro" src="ig_eq1.PNG">
+       <br>
+
+     <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-2:</b> If Outlook variable or feature to be used at root node is used to split 
+       the dataset, the information gain should be calculated as follows. Information Gain (Y given Outlook) is equal to 
+       Entropy on data set D subtracted by weighted child entropy
+        (<a href="https://en.wikipedia.org/wiki/Conditional_entropy" target="_blank">Conditional Entropy</a>) on 
+       data set D1(after splitting D using Outlook 
+       feature)</p>
+       <br>
+       <img class="img-responsive entro" style="width: 70%;" src="ig_cal.PNG">
+       <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center text-muted">Fig 2. Calculation of child entropy on split data </p>
+       <br>
+       <br>
+       <img class="img-responsive entro" src="ig_eq2.PNG">
+       <br>
+
+     <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-3:</b> Repeat the step 2 for all other features; wind, 
+       temperature and humidity. The feature with the highest IG will be the used at the root node. In this scenario, 
+       it is for Outlook. 
+       At every split, follow step 2 and step 3 on the split data.</p>
+       <br>
+
+       <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Using Scikit-learn library in python we can directly apply Decision trees
+         on classification tasks. It internally calculates 
+         <a href="https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity" target="_blank"> Gini impurity</a>, Entropy and Information gain.
+          Once decison tree is constructed from raw data set, a simple model can be built using if-else statements.
+          <br> <b>Note:</b> This is a simple data set with only 10 Data points. The more the data points, more relatable 
+          and accurate the results will be. Try the model below by selectling the options and clicking on submit button.
+       </p>
+       <br><br>
+     
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 model_1">
+       <br>
+       <h3 style="text-align: center; color:brown;">Simple model using if-else statements.</h3>
+       <br>
+     <label for="Outlook">Choose outlook</label>
+
+     <select name="outlook" id="outlook">
+       <option value="Cloudy">Cloudy</option>
+       <option value="Rainny">Rainy</option>
+       <option value="Sunny">Sunny</option>
+     </select>
+     <br><br>
+     <label for="Temperature">Choose Temperature</label>
+
+     <select name="Temperature" id="Temperature" >
+       <option value="Hot">Hot</option>
+       <option value="Mild">Mild</option>
+       <option value="Cool">Cool</option>
+     </select>
+
+     <br><br>
+     <label for="Humidity">Choose  Humidity</label>
+
+     <select name="Humidity" id="Humidity" >
+       <option value="High">High</option>
+       <option value="Normal">Normal</option>
+     </select>
+
+     <br><br>
+     <label for="Wind">Choose Wind</label>
+
+     <select name="Wind" id="Wind">
+       <option value="Strong">Strong</option>
+       <option value="Weak">Weak</option>
+     </select>
+     <br>
+     <button id="sel_button" onclick="predict()">Submit</button>
+     <h3 id="temp_predict"></h3>
+     <br>
+    </div>
+    <br>
+    <br>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-size: large;"><b>Iris Dataset</b></p>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12">In example 2, we will discuss how to implement a decision tree 
+      model using Python for Iris dataset. Since this is a classification task, given the input variables, the model 
+      has to predict what type of Iris flower it belongs to. It is not easy to differentiate these flowers just by 
+      looking at them as they look alike (See the figure below). A machine learning model can be trained on data 
+      collected, such that if the features (input variables) of the flower are given, the type (class) of the flower 
+      is to be predicted (output).
+       Iris data set has 4 input variables or features <b>Sepal length, Sepal width, Petal length
+        and Petal width </b> and the output labels are <b>Iris setosa, Iris versicolor and Iris virginica.</b>
+    </p>
+    <br>
+    <img class="img-responsive entro" src="iris-image.png">
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center text-muted">Fig 3. Iris flowers: Setosa, Versicolor, Virginica</p>
+    
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12">The steps to train Iris dataset using decision trees and visualize the tree is given below.
+      Note: The code is done on jupyter notebook using python.
+      
+    </p>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-1:</b> Import necessary libraries. 
+      There are two ways to access Iris data: it can be directly loaded from the Sklearn library or accessed by
+       downloading the csv file from Kaggle. The data set has 150 different data points with 5 columns. The dataset
+        can be downloaded from
+      <a href="https://www.kaggle.com/uciml/iris" target="_blank"> here</a>. Store the input features in a variable ‘x’ and the corresponding class in variable ‘y’. If data is downloaded from Kaggle, use Pandas to read the csv file.
+    </b></p>
+    <br><br>
+    <img class="img-responsive entro" src="iris_code1.PNG">
+    <br><br>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-2:</b> Display the first 5 rows of the data. Our input 
+      features are real values and output class is categorical. Hence this is a 
+      ‘classification task’. The data is ‘balanced’ because for each class, we have the same number of data points.
+  </p><br><br>
+    <img class="img-responsive entro" src="iris_code2.PNG">
+    <br><br>
+    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-3:</b>In step one, we imported a decision tree classifier. The classifier is defined such that, max depth = 4, starting at the root node to the leaf. The tree is only allowed 0 to 4 depth (to avoid overfitting). After that, fit the data (x,y) to the model (clf).
+    </p><br><br>
+      <img class="img-responsive entro" src="iris_code3.PNG">
+      <br><br>
+      <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Step-4:</b>Here Graphviz library is used to visualize the decision tree. You can check out other methods to visualize the tree and how to use Graphviz 
+      <a href="https://towardsdatascience.com/visualizing-decision-trees-with-python-scikit-learn-graphviz-matplotlib-1c50b4aa68dc" target="_blank">here</a>.</p><br>
+      <br>
+          <img class="img-responsive entro" src="iris_code4.PNG">
+          <br><br>
+          <img class="img-responsive entro" src="iris_tree.PNG">
+         <br><br>
+         <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12">A model can be easily built using the decision tree above 
+           just by using if-else statments. <br>
+           <b>Note:</b> For both models given in this blog, if-else conditions are written in Java script.
+         </p>
+         <div id="model_2" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <br>
+           <br>
+           <h2>Model to identify Iris flowers</h2>
+           <br>
+           <p style="text-align: center;">Enter only numbers</p>
+           
+           <input id="pw" placeholder="Enter Petal width in cm (range(1 to 2.5))">
+           <br><br>
+           <input id="pl" placeholder="Enter Petal length in cm (range(1 to 7))">
+           <br><br>
+           <input id="sw" placeholder="Enter Sepal width in cm (range(2 to 4.5))">
+           <br><br>
+           <input id="sl" placeholder="Enter Sepal length in cm (range(4 to 8))">
+           <br>
+           <br>
+           <button id="iris_button" onclick="predict_iris()">Submit</button>
+           <br>
+           <p id="out_iris" style="text-align: center;"></p>
+
+           </div>
+
+           <br><br>
+          <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b style="font-size: large;">Conclusion</b><br>Decision tree is a simple, yet very ‘interpretable’ model. While it is not limited to simple datasets like the ‘Iris dataset’, it can also be used for complex ones. To know how to use a decision tree for a regression task, click 
+            <a href="https://scikit-learn.org/stable/modules/tree.html#regression" target="_blank"> here</a>. There are 
+            <a href="https://towardsdatascience.com/decision-trees-understanding-the-basis-of-ensemble-methods-e075d5bfa704" target="_blank">ensemble </a> 
+            Decision trees models which work well for very large data, like 
+            <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">Random forest</a> and 
+            <a href="https://en.wikipedia.org/wiki/Gradient_boosting#Gradient_tree_boosting" target="_blank">Gradient Boosting 
+            Decision Trees (GBDT)</a> To know how to implement it in Python using Sklearn, click the following links.
+             <br>&nbsp;&nbsp;&nbsp;&nbsp;
+             1. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" target="_blank"> Random forest implementation
+              
+              </a>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;
+            2. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html" target="_blank">(GBDT) implementation</a>
+    
+          </p>
+
+
+     
+     
+
+     
+
+	
+</center>
+
+</body>
+</html>

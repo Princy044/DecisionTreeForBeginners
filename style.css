@@ -1,0 +1,42 @@
+p{
+margin-top:5px;
+margin-bottom: 5px ;
+font-size: medium;
+text-align: left;
+}
+#tab{
+   
+    text-align: center;
+}
+body{
+    margin-right: 5%;
+    margin-left: 5%;
+    
+}
+
+.tree_img{
+    text-align: center;
+}
+.model_1{
+  border-width: 2px;
+  border-color: brown;
+  border-style: ridge;
+  text-align: center !important;
+  background-color: lavender;
+}
+.entro{
+    text-align: center !important;
+}
+input{
+    text-align: center;
+    width: 70%;
+    background-color: lavenderblush;
+    color: rebeccapurple;
+}
+#model_2{
+    border-width: 2px;
+  border-color: brown;
+  border-style: ridge;
+  text-align: center !important;
+  background-color: lavender;
+}
